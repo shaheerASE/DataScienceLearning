@@ -85,6 +85,7 @@ def summarize(df):
     #          HINT:  df["revenue"].sum()
     # YOUR CODE HERE
     total_Revenue = df['revenue'].sum()
+    print(f"Total Revenue: {total_Revenue:.2f}")
     # TODO 4b: Print revenue grouped by category, sorted highest first.
     #          HINT:  df.groupby("category")["revenue"].sum().sort_values(ascending=False)
     # YOUR CODE HERE
