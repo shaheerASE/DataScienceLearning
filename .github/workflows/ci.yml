@@ -1,0 +1,42 @@
+# 🟤 CI/CD Pipeline — the heartbeat of DevOps
+# ============================================
+# This file tells GitHub: "every time code is pushed, automatically set up a
+# fresh machine, install everything, and run the tests." If a test fails, the
+# commit is flagged RED. This is how real teams keep their code from breaking.
+#
+# You don't run this yourself — GitHub runs it for you, in the cloud, for free.
+# Watch it happen under the "Actions" tab of your repository on GitHub.
+
+name: CI
+
+on:
+  push:
+    branches: ["**"]        # run on every branch
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest   # GitHub gives us a fresh Linux machine
+
+    steps:
+      # 1. Get the code onto the machine.
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      # 2. Install Python.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Install our project dependencies + the test tool.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      # 4. Run the test suite. If anything fails, the whole job fails (turns red).
+      - name: Run tests
+        run: pytest -v
