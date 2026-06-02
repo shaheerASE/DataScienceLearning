@@ -9,9 +9,9 @@
 ---
 
 ## Setup
-- [ ] Installed Python (with "Add to PATH"), Git, VS Code
-- [ ] Cloned the repo and checked out my branch
-- [ ] Created a `.venv` and ran `pip install -r requirements.txt`
+- [✅] Installed Python (with "Add to PATH"), Git, VS Code
+- [✅] Cloned the repo and checked out my branch
+- [✅] Created a `.venv` and ran `pip install -r requirements.txt`
 
 ## ⚪ White Belt — Python + tooling
 - [ ] Read `lessons/01_white_belt_python.md`
