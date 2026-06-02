@@ -89,5 +89,13 @@ DataScienceLearning/
 
 ## ▶️ Start Here
 
-Go to **`projects/01_sales_pipeline/`** and open its `README.md`.
-Your first industrial task is waiting. We learn by doing — beginning now.
+1. Follow **`SETUP_WINDOWS.md`** (company machine? it has a safe `git --local` path).
+2. Confirm your environment with one command — your first win:
+   ```bash
+   python verify_setup.py
+   ```
+   All green = the dojo is ready. Tick your first boxes in **`PROGRESS.md`**.
+3. Then open **`projects/01_sales_pipeline/`** (you build) and
+   **`projects/02_churn_prediction/`** (full demo you run).
+
+We learn by doing — beginning now.
