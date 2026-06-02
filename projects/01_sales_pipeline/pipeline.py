@@ -38,27 +38,30 @@ def clean_data(df):
     # TODO 2a: Standardize the 'category' column to Title Case so that
     #          'electronics' and 'Electronics' become the SAME value.
     #          HINT:  df["category"] = df["category"].str.title()
-    # YOUR CODE HERE
+    df["category"] = df["category"].str.title()
 
     # TODO 2b: Do the same for the 'region' column (Title Case).
     # YOUR CODE HERE
-
+    df["region"] = df["region"].str.title()
     # TODO 2c: Convert 'date' to a real datetime. Bad dates become "NaT" (missing).
     #          HINT:  df["date"] = pd.to_datetime(df["date"], errors="coerce")
     # YOUR CODE HERE
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
     # TODO 2d: Remove rows where 'quantity' is missing (empty cells).
     #          HINT:  df = df.dropna(subset=["quantity"])
     # YOUR CODE HERE
+    df=df.dropna(subset=["quantity"])
 
     # TODO 2e: Remove rows where 'quantity' is negative (you cannot sell -1 item).
     #          HINT:  df = df[df["quantity"] > 0]
     # YOUR CODE HERE
+    df = df[df["quantity"]>0]
 
     # TODO 2f: Remove rows with a missing date (NaT) — time analysis needs valid dates.
     #          HINT:  df = df.dropna(subset=["date"])
     # YOUR CODE HERE
-
+    df=df.dropna(subset=["date"])
     print(f"🧹 After cleaning: {len(df)} rows remain")
     return df
 
@@ -68,9 +71,8 @@ def add_revenue(df):
     Creating useful new columns from existing ones is called FEATURE ENGINEERING."""
 
     # TODO 3: Create a 'revenue' column = quantity * unit_price.
-    #         HINT:  df["revenue"] = df["quantity"] * df["unit_price"]
     # YOUR CODE HERE
-
+    df["revenue"] = df["quantity"] * df["unit_price"]
     return df
 
 
@@ -82,14 +84,19 @@ def summarize(df):
     # TODO 4a: Print total revenue across all orders.
     #          HINT:  df["revenue"].sum()
     # YOUR CODE HERE
-
+    total_Revenue = df['revenue'].sum()
     # TODO 4b: Print revenue grouped by category, sorted highest first.
     #          HINT:  df.groupby("category")["revenue"].sum().sort_values(ascending=False)
     # YOUR CODE HERE
-
+    category_grouped = df.groupby("category", as_index=False)["revenue"].sum()
+    sorted_grouped = category_grouped.sort_values("revenue",ascending=False)
+    print(sorted_grouped)
     # TODO 4c: Print revenue grouped by region.
     #          HINT:  df.groupby("region")["revenue"].sum()
     # YOUR CODE HERE
+    region_grouped = df.groupby("region", as_index=False)["revenue"].sum()
+    print(region_grouped)
+
 
 
 def save_data(df, path):
