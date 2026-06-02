@@ -1,0 +1,24 @@
+# --- DevOps habit: never commit junk, secrets, or generated files ---
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Generated data outputs (we regenerate these by running the pipeline)
+data/clean_sales.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor noise
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets — NEVER commit these (we will learn proper secret handling later)
+.env
+*.key
+credentials.json
