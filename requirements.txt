@@ -1,8 +1,21 @@
-# Core data science stack — we pin versions like real teams do (DevOps habit).
-# Install with:  pip3 install -r requirements.txt
-pandas==2.2.2
-numpy==1.26.4
-matplotlib==3.8.4
-scikit-learn==1.8.0
-joblib==1.4.2
-scipy==1.13.1
+# Core data science stack.
+#
+# NOTE on version pinning (a real DevOps lesson):
+#   Exact pins like "pandas==2.2.2" guarantee everyone gets the SAME version —
+#   great for reproducibility, BUT only when the Python version is also fixed
+#   (our CI uses Python 3.11, so it works there). On a fresh machine with a
+#   NEWER Python, an old exact pin may have no prebuilt "wheel", forcing pip to
+#   compile from source (which needs a C++ compiler and usually fails on Windows).
+#
+#   So here we use MINIMUM versions ( >= ) instead. pip then downloads the
+#   newest prebuilt wheel that matches whatever Python you have installed.
+#   In a real production project you'd lock BOTH the package and Python versions
+#   (via Docker or a lockfile) so they always match.
+#
+# Install with:  pip install -r requirements.txt
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+scikit-learn>=1.4
+scipy>=1.11
+joblib>=1.3
