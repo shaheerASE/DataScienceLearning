@@ -65,7 +65,13 @@ DataScienceLearning/
 ├── lessons/                   <- read this first, each belt
 ├── exercises/                 <- where you sweat
 ├── projects/                  <- industrial-style projects (the real deal)
-│   └── 01_sales_pipeline/     <- YOUR FIRST PRACTICAL TASK
+│   ├── 01_sales_pipeline/     <- 🟡 YOU build this (Pandas, TODOs + hints)
+│   ├── 02_churn_prediction/   <- 🟢🟣🟤 full MLOps demo (data→model→API→Docker)
+│   ├── 03_ab_testing/         <- 🔵 statistics: A/B test + p-values
+│   └── 04_sql_practice/       <- 🟡 SQL drills on a real mini-database
+├── tests/                     <- automated tests (run by CI)
+├── .github/workflows/ci.yml   <- CI/CD: tests run in the cloud on every push
+├── PROGRESS.md                <- YOUR progress tracker — update it as you go
 └── data/                      <- datasets to train on
 ```
 
