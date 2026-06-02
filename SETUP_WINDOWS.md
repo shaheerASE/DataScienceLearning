@@ -3,6 +3,10 @@
 > Three tools. No more. **Python**, **Git**, **VS Code**.
 > Follow in order. Do not skip. Each step builds on the last.
 
+> 🏢 **On a company machine?** You already have Git (2.46) and VS Code, so you
+> only need **Step 1 (Python)**, then skip to Step 5. And read **Step 4** carefully —
+> we will configure Git for THIS repo only, so your company name/email stay untouched.
+
 ---
 
 ## Step 1 — Install Python 🐍
@@ -19,35 +23,56 @@
 
 ---
 
-## Step 2 — Install Git 📦
+## Step 2 — Install Git 📦  *(already done — skip)*
 
-1. Go to **https://git-scm.com/download/win** — the download starts automatically.
-2. Run the installer. Just click **Next** through all screens (defaults are fine).
-3. Verify in PowerShell:
-   ```powershell
-   git --version
-   ```
-
----
-
-## Step 3 — Install VS Code 💻
-
-1. Go to **https://code.visualstudio.com/** and download for Windows.
-2. Install (defaults are fine — tick "Add to PATH" if asked).
-3. Open VS Code. On the left sidebar, click the **Extensions** icon (four squares)
-   and install just one for now:
-   - **Python** (by Microsoft)
-   That single extension brings everything you need to run and debug Python.
-
----
-
-## Step 4 — Tell Git who you are (one time only)
-
-In PowerShell, run these two lines with your own name and email:
+You already have Git 2.46. Just confirm:
 ```powershell
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
+git --version
 ```
+
+---
+
+## Step 3 — Install VS Code 💻  *(already done — just add one extension)*
+
+Open VS Code → click the **Extensions** icon (four squares) on the left → install:
+- **Python** (by Microsoft)
+
+That single extension brings everything you need to run and debug Python.
+
+---
+
+## Step 4 — Configure Git for THIS REPO ONLY 🏢 (protect your company identity)
+
+> ⚠️ **Do NOT use `git config --global` on a company machine** — that would
+> overwrite the name/email your employer set. Instead we set it **locally**, so
+> the setting lives ONLY inside this learning repo and your company config is
+> never touched.
+
+**First, peek at your current global config — WITHOUT changing it:**
+```powershell
+git config --global user.name
+git config --global user.email
+```
+(Note these down. We are not changing them — just looking.)
+
+**Then, AFTER you clone (Step 5), run these INSIDE the repo folder.**
+The `--local` flag is the key — it writes to `.git/config` in this folder only:
+```powershell
+# run these from inside the DataScienceLearning folder
+git config --local user.name "Your Personal Name"
+git config --local user.email "your-personal@email.com"
+```
+
+**Verify it worked and is local-only:**
+```powershell
+git config --local --list        # should show YOUR personal name/email
+git config --global user.email   # should STILL show your company email — untouched ✅
+```
+
+> 🧠 **Why this matters (a real DevOps skill):** Git reads config in layers —
+> *local* (this repo) overrides *global* (your whole machine). Professionals use
+> local config all the time to keep work and personal commits separate. You just
+> learned something many senior engineers get wrong.
 
 ---
 
