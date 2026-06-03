@@ -15,7 +15,7 @@ import pandas as pd
 print("\n--- Movement 1: the DataFrame ---")
 df = pd.DataFrame({
     "name":    ["Ayesha", "Lukas", "Sara", "Jonas"],
-    "country": ["Pakistan", "Germany", "Pakistan", "Germany"],
+    "country": ["Pakistan", "Germany", "Austria", "Germany"],
     "sales":   [1200, 80, 1400, 25],
 })
 print(df)
@@ -47,3 +47,34 @@ print("\n--- Movement 7: group & summarize ---")
 print(df.groupby("country")["sales"].sum())
 
 print("\n🥋 Drills complete. Compare each block to lesson 02, then do Project 01.")
+
+
+print("\n -----My Drills-----")
+
+# Challenge 1
+# Print only Country Pakistan
+
+print(f"--Pakistan Only: \n", df[df["country"] == "Pakistan"])
+print()
+
+
+
+# Challenge 2
+# Add a new Column
+print("\n ---Pakistan Sales---")
+df["sales_pkr"] = df["sales"]*280
+print(df[["name", "sales", "sales_pkr"]])
+print()
+
+# Challenge 3
+# Print Average sales per country
+
+print(f"Average Sales per Country")
+print(df.groupby("country")["sales"].mean())
+print()
+
+# Challenge 4
+# Print the Highest gross Sales
+
+print(f"---Highest gross sales---")
+print(df["sales"].max())

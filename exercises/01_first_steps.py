@@ -24,8 +24,8 @@ Do NOT delete the worked examples — study them, then do your own.
 example_name = "Mentor"
 
 # YOUR CODE HERE:
-my_name = ""      # <- put your name between the quotes
-my_goal = ""      # <- put your goal between the quotes
+my_name = "Shaheer"      # <- put your name between the quotes
+my_goal = "To become Data Scientist & DevOps Engineer"      # <- put your goal between the quotes
 
 
 # ---------------------------------------------------------------------------
@@ -37,9 +37,9 @@ my_goal = ""      # <- put your goal between the quotes
 study_minutes = [30, 45, 60, 20, 90, 75, 50]
 
 # YOUR CODE HERE:
-# print(...)  the first day
-# print(...)  the last day
-# print(...)  the number of days
+print(f"The First Day: {study_minutes[0]}")
+print(f"The Last Day: {study_minutes[-1]}")
+print(f"Total Days: {len(study_minutes)}")
 
 
 # ---------------------------------------------------------------------------
@@ -48,7 +48,11 @@ study_minutes = [30, 45, 60, 20, 90, 75, 50]
 # student studied 60 minutes or more, otherwise print "train harder".
 # ---------------------------------------------------------------------------
 
-# YOUR CODE HERE:
+for item in study_minutes:
+    if item >= 60:
+        print("strong day")
+    else:
+        print("Train harder")
 
 
 # ---------------------------------------------------------------------------
@@ -59,10 +63,10 @@ study_minutes = [30, 45, 60, 20, 90, 75, 50]
 
 def total_minutes(minutes_list):
     """Return the total number of minutes studied."""
-    # YOUR CODE HERE (replace the line below):
-    return 0
+    return sum(minutes_list)
 
-
+total_studied = total_minutes(study_minutes)
+print(f"Total number of minutes studied: {total_studied}")
 # ---------------------------------------------------------------------------
 # 🥋 THE MENTOR'S CHECK — do not edit below this line
 # ---------------------------------------------------------------------------
