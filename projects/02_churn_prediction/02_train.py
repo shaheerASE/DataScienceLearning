@@ -47,7 +47,9 @@ print(f"Training on {len(X_train)} customers, testing on {len(X_test)} unseen on
 # StandardScaler puts all features on the same scale (good practice).
 model = Pipeline([
     ("scaler", StandardScaler()),
-    ("clf", RandomForestClassifier(n_estimators=200, random_state=42)),
+    ("clf", LogisticRegression(max_iter=1000)),
+    # ("clf", RandomForestClassifier(n_estimators=200, random_state=42)),
+    
 ])
 
 model.fit(X_train, y_train)  # <- this is the actual "learning"
@@ -73,9 +75,14 @@ print("  - recall   : of all who actually churned, how many we caught")
 print("  - roc_auc  : overall ranking quality (0.5=coin flip, 1.0=perfect)")
 
 # --- Which features matter most? (interpretability) ---
-coefs = pd.Series(model.named_steps["clf"].coef_[0], index=FEATURES).sort_values()
-print("\nFeature influence (negative = reduces churn, positive = increases):")
-print(coefs.round(2))
+clf = model.named_steps["clf"]
+if hasattr(clf,"coef_"):
+    influence = pd.Series(model.named_steps["clf"].coef_[0], index=FEATURES).sort_values()
+    print("\nFeature influence — coefficients (negative reduces churn):")
+else:
+    influence = pd.Series(clf.feature_importances_, index=FEATURES).sort_values(ascending=False)
+    print("\nFeature importance — how much each feature drove decisions:")
+print(influence.round(3))
 
 # --- Save the model + metrics (this is what DevOps will deploy) ---
 joblib.dump(model, MODEL_DIR / "churn_model.joblib")
